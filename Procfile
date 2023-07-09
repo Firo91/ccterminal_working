@@ -1,2 +1,2 @@
-web: gunicorn FileShare.wsgi --log-file - --chdir /code/FileShare
+web: gunicorn equipment_log.wsgi --log-file - --chdir /code/equipment_log
 release: bash release.sh
