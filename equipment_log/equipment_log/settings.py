@@ -62,7 +62,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'equipment_log.urls'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://ccterminals.applikuapp.com/',
+    '.applikuapp.com/',
 ]
 
 TEMPLATES = [
