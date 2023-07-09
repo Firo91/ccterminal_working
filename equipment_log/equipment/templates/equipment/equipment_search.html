@@ -1,0 +1,65 @@
+{% extends 'home.html' %}
+
+{% load static %}
+
+{% block content%}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>How to use:</h2>
+          <p>
+             <b>Step 1:</b> If any of the information below is incorrect, please use edit to change it, press <b>Refresh</b> to see the changes <br>
+             <b>Step 2:</b> If the information is correct or have been corrected, please mark the checkbox and press <b>Save</b>.
+          </p>
+        </div>
+      </div>
+    </div>
+      
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2><b>Welcome</b> {{ request.user.name }} to the Weekly CC Terminal Check</h2>             
+            </div>            
+          <div class="col-md-6 text-right">
+            <div class="btn-group" role="group">
+        <form method="POST" action="{% url 'equipment_search' %}">          
+              {% csrf_token %}
+              <button onclick="location.reload()" class="btn btn-primary mr-6 mb-3"><b>Refresh</b></button>                      
+              <button type="submit" class="btn btn-success mr-6 mb-3"><b>Save</b></button>  
+            </div>                                      
+          </div>
+          <div class="card-columns" id="equipment-list">
+            {% if equipments %}
+            {% for equipment in equipments %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">Bax Number: {{ equipment.bax_nr }}</h5>
+                    <h5 class="card-title">Unit Name/Number: {{ equipment.name }}</h5>
+                    <h5 class="card-title">Terminal ID: {{ equipment.tid }}</h5>
+                    <h5 class="card-title">Terminal Type: {{ equipment.terminal_type }}</h5>
+                    <h5 class="card-title">Location/City: {{ equipment.city }}</h5>
+                    <div class="form-group">
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="has_equipment_{{ equipment.id }}" name="has_equipment_{{ equipment.id }}" {% if equipment.has_equipment %}checked{% endif %} onclick="if (this.checked) { this.closest('form').submit(); }">
+                    <label class="form-check-label" for="date_checked_{{ equipment.id }}"><b>Check if all the info is correct</b></label>
+                    <input type="hidden" name="equipment_id" value="{{ equipment.id }}">
+                  </div>                  
+                    {% if equipment.last_checked_date %}
+                      {% if equipment.is_check_expired %}
+                        <p class="card-text text-danger">The last check expired on {{ equipment.last_checked_date }}. Contact Helpdesk ASAP.</p>
+                      {% else %}
+                            <p class="card-text text-success">This item was last checked on {{ equipment.last_checked_date }}</p>
+                      {% endif %}
+                    {% else %}
+                      <p class="card-text text-danger">This item has not been checked yet! If terminal is missing contact Helpdesk.</p>
+                    {% endif %}
+                      <button type="submit" class="btn btn-primary" onclick="event.preventDefault(); var editFormUrl = '{% url 'edit_equipment' equipment_id=equipment.id %}'; window.open(editFormUrl, '_blank', 'width=1000,height=800');">Edit</button>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+          </div>
+        </form>
+        </div>
+        {% endblock %}

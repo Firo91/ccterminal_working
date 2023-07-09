@@ -1,0 +1,9 @@
+{% load crispy_forms_tags %}
+
+{% if form|crispy %}
+  <div class="form-group">
+    {{ form|crispy }}
+  </div>
+{% else %}
+  <p>No form found.</p>
+{% endif %}

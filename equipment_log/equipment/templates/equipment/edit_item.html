@@ -1,0 +1,59 @@
+{% extends 'home.html' %}
+
+{% load static %}
+
+{% block content %}
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card">
+          <h1 class="card-header text-center">{{ equipment.name }}</h1>
+          <div class="card-body">
+            <h3 class="card-title"><b>Existing Information:</b></h3>
+            <p class="card-title"><b>Bax Number:</b> {{ equipment.bax_nr }}</p>
+            <p class="card-title"><b>Unit Name/Number:</b> {{ equipment.name }}</p>
+            <p class="card-title"><b>Terminal ID:</b> {{ equipment.tid }}</p>
+            <p class="card-title"><b>Terminal Type:</b> {{ equipment.terminal_type }}</p>
+            <p class="card-title"><b>Location/City:</b> {{ equipment.city }}</p>
+            <hr>
+            <h3 class="card-title"><b>New Information:</b></h3>
+            <form method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="id_bax_nr"><b>Bax Number:</b></label>
+                <input type="text" name="bax_nr" value="{{ equipment.bax_nr }}" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="id_name"><b>Unit Name:</b></label>
+                <input type="text" name="name" value="{{ equipment.name }}" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="id_tid"><b>Terminal ID:</b></label>
+                <input type="text" name="tid" value="{{ equipment.tid }}" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="id_terminal_type"><b>Terminal Type:</b></label>
+                <input type="text" name="terminal_type" value="{{ equipment.terminal_type }}" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="id_city"><b>City:</b></label>
+                <input type="text" name="city" value="{{ equipment.city }}" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="id_country"><b>Country:</b></label>
+                <input type="text" name="country" value="{{ equipment.country }}" class="form-control">
+              <div class="form-group">
+                <label for="id_serial_number"><b>Serial Number:</b></label>
+                <input type="text" name="serial_number" value="{{ equipment.serial_number }}" class="form-control">
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="{% url 'equipment_search' %}" class="btn btn-secondary">Cancel</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

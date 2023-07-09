@@ -1,0 +1,69 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cc Terminal Weekly</title>
+    <!-- Bootstrap CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+      {% if request.path == '/' %}
+        <img src="{% static 'Pictures/SelectServicePartner.svg.png' %}" height="30" class="d-inline-block align-top mr-2" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+      {% endif %}
+        {% if request.path != '/' %}
+            <a class="navbar-brand" href="{% url 'logout' %}">
+              <img src="{% static 'Pictures/SelectServicePartner.svg.png' %}" height="30" class="d-inline-block align-top mr-2" alt="">
+            </a>
+        {% endif %}
+      {% if user.is_authenticated %}
+        {% if request.path == '/equipment_search/'%}
+            <!-- Button visible to logged-in users -->
+            <a class="nav-link activa" aria-current="page" href="{% url 'logout' %}">Logout</a>
+            <a class="nav-link activa" aria-current="page" href="{% url 'change_password' %}">Change Password</a>
+        {% endif %}
+      {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  {% if request.path == '/' %}
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <img src="{% static 'Pictures/SelectServicePartner.svg.png' %}" class="img-fluid mx-auto" style="max-width: 700px; max-height: 700px;">
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+              <div class="jumbotron mt-3">
+                <h1 class="display-4">Weekly CC Terminal Controll</h1>
+                <p class="lead">
+                    <hr>Here you can login or if you are new to the site you can register <hr>If you need any assistance you can contact Helpdesk or your local BSM. <hr> If there are any issues with the page itself, contact Kim-Andre Kopperud (BSM Norway)
+                </p>
+                <hr class="my-4">
+                <a class="btn btn-primary btn-lg" href="login" role="button">Press here to login</a>
+                <a class="btn btn-primary btn-lg" href="register" role="button">Press here to register</a>
+                <a class="btn btn-primary btn-lg" href="login_bsm" role="button">BSM / IT press here</a>
+              </div>
+            </div>
+          </div>
+      </div>
+  {% endif %}
+    {% block content%}
+    {% endblock%}
+    <!-- Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

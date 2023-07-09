@@ -1,0 +1,23 @@
+{% extends 'home.html'%}
+
+{% block content %}
+<div class="container">
+    <h1>Checked History</h1>
+    <button class="nav-link activa" onclick="window.location.href='{% url 'bsm_equipment_search' %}'">Go back to BSM View</button>
+    {% if check_histories %}
+      <ul class="list-group">
+        {% for history in check_histories %}
+          <li class="list-group-item">
+            <h5 class="mb-1">Checked by: {{ history.checked_by }}</h5>
+            <p class="mb-1">Username: {{ history.checked_by_username }}</p>
+            <p class="mb-1">Checked Date: {{ history.checked_date }}</p>
+            <p class="mb-1">Equipment TID: {{ history.equipment_tid }}</p>
+            <p class="mb-1">Equipment Name: {{ history.equipment_name }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No check history entries found.</p>
+    {% endif %}
+  </div>
+{% endblock %}

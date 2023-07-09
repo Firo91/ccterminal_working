@@ -1,0 +1,24 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+<div class="container">
+  <h1>Equipment Changes</h1>
+  <button class="nav-link activa" onclick="window.location.href='{% url 'bsm_equipment_search' %}'">Go back to BSM View</button>
+  {% if equipment_changes %}
+    <ul class="list-group">
+      {% for change in equipment_changes %}
+        <li class="list-group-item">
+          <h5 class="mb-1">Equipment Name: {{ change.equipment.name }}</h5>
+          <p class="mb-1">Old Value: {{ change.old_value }}</p>
+          <p class="mb-1">New Value: {{ change.field }}</p>
+          <p class="mb-0">Change Date: {{ change.edited_at }}</p>
+          <p class="mb-1">User: {{ change.edited_by }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No equipment changes found.</p>
+  {% endif %}
+</div>
+{% endblock %}

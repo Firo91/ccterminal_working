@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cc Terminal Weekly</title>
+    <!-- Bootstrap CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'Pictures/SelectServicePartner.svg.png' %}" height="30" class="d-inline-block align-top mr-2" alt=""> Back
+      </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li>
+              <a class="nav-link active" aria-current="page" href="{% url 'upload_file' %}">Upload new CC terminal List</a>
+            </li>
+            <li>
+              <a class="nav-link activa" aria-current="page"  href="{% url 'download_equipment_excel' %}">Download CC terminals as a Excel file</a>
+            </li>
+            <li>
+              <a class="nav-link activa" aria-current="page"  href="{% url 'download_equipment_excel_history' %}">Download CC terminals History as a Excel file</a>
+            </li>
+            <li>
+              <a class="nav-link activa" aria-current="page"  href="{% url 'download_equipment_excel_changes' %}">Download CC terminals Changes as a Excel file</a>
+            </li>
+            <li>
+              <a class="nav-link activa" aria-current="page"  href="{% url 'download_equipment_excel_users' %}">Download CC terminals Users as a Excel file</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <img src="{% static 'Pictures/SelectServicePartner.svg.png' %}" class="img-fluid mx-auto" style="max-width: 700px; max-height: 700px;">
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+              <div class="jumbotron mt-3">
+                <h1 class="display-4">CC Terminal for BSM/IT</h1>
+                <p class="lead"></p>
+                <hr class="my-4">
+                <a class="btn btn-primary btn-lg" href={% url "bsm_equipment_search"%} role="button">BSM View</a>
+              </div>
+            </div>
+          </div>
+      </div>
+    {% block content%}
+    {% endblock%}
+    <!-- Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
