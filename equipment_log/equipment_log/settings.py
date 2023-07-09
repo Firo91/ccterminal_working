@@ -61,6 +61,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'equipment_log.urls'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://ccterminals.applikuapp.com/',
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
