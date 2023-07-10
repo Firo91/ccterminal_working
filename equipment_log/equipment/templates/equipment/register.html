@@ -5,6 +5,8 @@
   <p>
     <b>Username:</b> As a username you can use the location and your first name, example "OSL Kim"<hr>
     <b>Name:</b> Register your full name here.<hr>
+
+    {% messages %}
     
     <form method="post" action="{% url 'register' %}">
       {% csrf_token %}
