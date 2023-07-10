@@ -22,4 +22,5 @@ urlpatterns = [
     path('change_password/', change_password, name='change_password'),
     path('login/reset_password/', reset_password, name='reset_password'),
     path('login_bsm/', custom_login_bsm, name='custom_login_bsm'),
+    path('login_bsm/reset_password/', reset_password, name='reset_password_bsm'),
 ]
