@@ -438,7 +438,8 @@ def register(request):
                 user.city = city
                 user.set_password(password1)
                 user.save()
-                return redirect('custom_login')  # Redirect to the login page after successful registration
+                messages.success(request, 'Registration successful')
+                return render(request, 'equipment/register.html', {'form': form})
             else:
                 # Handle password mismatch error
                 return HttpResponse("Passwords do not match")
