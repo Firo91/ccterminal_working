@@ -64,7 +64,7 @@ def bsm_equipment_search(request):
                                        
     
     # Render the template with the equipment queryset and selected country
-    return render(request, 'bsm_equipment_search.html', {'equipments': equipments})
+    return render(request, 'equipment/bsm_equipment_search.html', {'equipments': equipments})
 
 @login_required
 def equipment_search(request):
@@ -158,7 +158,7 @@ def equipment_search(request):
         return redirect(reverse('equipment_search') + '?' + request.GET.urlencode())
 
     # Render the template with the equipment queryset and selected country
-    return render(request, 'equipment_search.html', {'equipments': equipments, 'selected_country': selected_country})
+    return render(request, 'equipment/equipment_search.html', {'equipments': equipments, 'selected_country': selected_country})
 
 def upload_file(request):
     if request.method == 'POST':
@@ -183,9 +183,9 @@ def upload_file(request):
             
             equipment.save()
 
-        return render(request, 'equipment_search.html')
+        return render(request, 'equipment/equipment_search.html')
 
-    return render(request, 'upload_file.html')
+    return render(request, 'equipment/upload_file.html')
 
 def download_equipment_excel(request):
     # Query the Equipment objects
@@ -362,7 +362,7 @@ def edit_equipment(request, equipment_id):
     elif request.method == 'GET':
         # Handle GET request here if needed
         # For example, you can render the edit form template
-        return render(request, 'edit_item.html', {'equipment': equipment})
+        return render(request, 'equipment/edit_item.html', {'equipment': equipment})
 
     return JsonResponse({'status': 'error', 'message': 'Invalid request method.'})
     
@@ -375,7 +375,7 @@ def equipment_changes_view(request, equipment_id):
 
 def check_history(request):
     check_histories = CheckHistory.objects.all().order_by('-checked_date')[:3]
-    return render(request, 'check_history.html', {'check_histories': check_histories})
+    return render(request, 'equipment/check_history.html', {'check_histories': check_histories})
 
 def custom_login(request):
     if request.method == 'POST':
@@ -388,7 +388,7 @@ def custom_login(request):
         if user is not None:
             # User credentials are correct, log in the user
             login(request, user)
-            return redirect('equipment_search')  # Replace 'equipment_search' with the URL name of your desired page
+            return redirect('equipment/equipment_search')  # Replace 'equipment_search' with the URL name of your desired page
 
         else:
             error_message = 'Invalid name or password. Please try again.'
@@ -396,7 +396,7 @@ def custom_login(request):
     else:
         error_message = ''
 
-    return render(request, 'login.html', {'error_message': error_message})
+    return render(request, 'equipment/login.html', {'error_message': error_message})
 
 def custom_login_bsm(request):
     if request.method == 'POST':
@@ -417,7 +417,7 @@ def custom_login_bsm(request):
     else:
         error_message = ''
 
-    return render(request, 'login_bsm.html', {'error_message': error_message})
+    return render(request, 'equipment/login_bsm.html', {'error_message': error_message})
 
 def register(request):
     if request.method == 'POST':
@@ -445,7 +445,7 @@ def register(request):
     else:
         form = CustomUserCreationForm()
     
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'equipment/register.html', {'form': form})
 
 def get_locations(request):
     country = request.GET.get('country')
@@ -468,7 +468,7 @@ def change_password(request):
             messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordChangeForm(user=request.user)
-    return render(request, 'change_password.html', {'form': form})
+    return render(request, 'equipment/change_password.html', {'form': form})
 
 def reset_password(request):
     if request.method == 'POST':
@@ -497,5 +497,5 @@ def reset_password(request):
     else:
         form = CustomPasswordResetForm()
     
-    return render(request, 'reset_password.html', {'form': form})
+    return render(request, 'equipment/reset_password.html', {'form': form})
 
