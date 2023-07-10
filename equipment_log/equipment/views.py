@@ -491,7 +491,7 @@ def reset_password(request):
                 user.save()
                 
                 messages.success(request, f'Temporary password: {temp_password}. Please login with this password and change it immediately.')
-                return render(request, 'reset_password.html', {'form': form})
+                return render(request, 'equipment/reset_password.html', {'form': form})
             else:
                 messages.error(request, 'Invalid username or name.')
     else:
