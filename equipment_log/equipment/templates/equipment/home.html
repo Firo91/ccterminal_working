@@ -20,15 +20,15 @@
           <ul class="navbar-nav ms-auto">
       {% endif %}
         {% if request.path != '/' %}
-            <a class="navbar-brand" href="{% url 'logout' %}">
+            <a class="navbar-brand" href="{% url 'equipment/logout' %}">
               <img src="{% static 'Pictures/SelectServicePartner.svg.png' %}" height="30" class="d-inline-block align-top mr-2" alt="">
             </a>
         {% endif %}
       {% if user.is_authenticated %}
         {% if request.path == '/equipment_search/'%}
             <!-- Button visible to logged-in users -->
-            <a class="nav-link activa" aria-current="page" href="{% url 'logout' %}">Logout</a>
-            <a class="nav-link activa" aria-current="page" href="{% url 'change_password' %}">Change Password</a>
+            <a class="nav-link activa" aria-current="page" href="{% url 'equipment/logout' %}">Logout</a>
+            <a class="nav-link activa" aria-current="page" href="{% url 'equipment/change_password' %}">Change Password</a>
         {% endif %}
       {% endif %}
           </ul>

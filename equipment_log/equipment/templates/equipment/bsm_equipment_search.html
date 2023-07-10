@@ -6,7 +6,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <form method="get" action="{% url 'bsm_equipment_search' %}">
+          <form method="get" action="{% url 'equipment/bsm_equipment_search' %}">
             <div class="form-group">
               <label for="country-filter"><h4>Filter by Country:</h4></label>
               <div class="input-group">
@@ -26,7 +26,7 @@
           </form>
         </div>
         <div class="col-md-6">
-          <form action="{% url 'bsm_equipment_search' %}" method="get">
+          <form action="{% url 'equipment/bsm_equipment_search' %}" method="get">
             <div class="form-group">
               <label for="search-input"><h4>Look up CC Terminals:</h4></label>
               <div class="input-group">
@@ -67,12 +67,12 @@
   
                           <!-- Changes -->
                           
-                          <a href="{% url 'equipment_changes' equipment_id=item.id %}" target="_blank" onclick="event.preventDefault(); window.open(this.href, '_blank', 'width=600,height=1000');">
+                          <a href="{% url 'equipment/equipment_changes' equipment_id=item.id %}" target="_blank" onclick="event.preventDefault(); window.open(this.href, '_blank', 'width=600,height=1000');">
                             <button>View Changes</button>
                         </a>
                         
   
-                          <a href="{% url 'check_history' %}" target="_blank" onclick="event.preventDefault(); window.open(this.href, '_blank', 'width=600,height=1000');">
+                          <a href="{% url 'equipment/check_history' %}" target="_blank" onclick="event.preventDefault(); window.open(this.href, '_blank', 'width=600,height=1000');">
                             <button>View History</button>
                           </a>
                         

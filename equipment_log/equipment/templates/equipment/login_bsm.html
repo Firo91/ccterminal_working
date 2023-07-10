@@ -6,7 +6,7 @@
     <p>{{ error_message }}</p>
   {% endif %}
   
-  <form method="post" action="{% url 'custom_login_bsm' %}">
+  <form method="post" action="{% url 'equipment/custom_login_bsm' %}">
     {% csrf_token %}
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required>
