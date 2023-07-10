@@ -6,7 +6,7 @@
     <b>Username:</b> As a username you can use the location and your first name, example "OSL Kim"<hr>
     <b>Name:</b> Register your full name here.<hr>
     
-    <form method="post" action="{% url 'equipment/register' %}">
+    <form method="post" action="{% url 'register' %}">
       {% csrf_token %}
       <p>Username and Name:</p>
       <input type="text" name="username" placeholder=" Enter a Username">
