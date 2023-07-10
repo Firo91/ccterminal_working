@@ -388,7 +388,7 @@ def custom_login(request):
         if user is not None:
             # User credentials are correct, log in the user
             login(request, user)
-            return redirect('equipment/equipment_search')  # Replace 'equipment_search' with the URL name of your desired page
+            return redirect('equipment_search')  # Replace 'equipment_search' with the URL name of your desired page
 
         else:
             error_message = 'Invalid name or password. Please try again.'
