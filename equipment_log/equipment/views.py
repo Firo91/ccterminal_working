@@ -371,7 +371,7 @@ def equipment_changes_view(request, equipment_id):
     equipment = Equipment.objects.get(id=equipment_id)
     equipment_changes = EquipmentEditHistory.objects.filter(equipment_id=equipment_id)
 
-    return render(request, 'equipment_changes.html', {'equipment_changes': equipment_changes})
+    return render(request, 'equipment/equipment_changes.html', {'equipment_changes': equipment_changes})
 
 def check_history(request):
     check_histories = CheckHistory.objects.all().order_by('-checked_date')[:3]
