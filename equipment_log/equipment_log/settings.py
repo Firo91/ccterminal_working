@@ -20,7 +20,6 @@ env = environ.Env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 DEBUG = env.bool('DJANGO_DEBUG', default=True)
 
 # Allowed Hosts Definition
@@ -52,6 +51,7 @@ AUTH_USER_MODEL = 'equipment.CustomUser'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -62,13 +62,13 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'equipment_log.urls'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://ccterminals.applikuapp.com/','http://ccterminals.applikuapp.com/'
+    'https://ccterminals.applikuapp.com/', 'http://ccterminals.applikuapp.com/'
 ]
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 TEMPLATES = [
-        {
+    {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
@@ -103,7 +103,6 @@ DATABASES = {
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -135,7 +134,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -149,3 +147,14 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STORAGES = {
+    "default": {
+        "BACKEND": 'django.core.files.storage.FileSystemStorage',
+    },
+    "staticfiles": {
+        "BACKEND": 'equipment_log.storages.StaticStorage',
+    }
+}
+
+WHITENOISE_USE_FINDERS = True
