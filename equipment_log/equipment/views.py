@@ -28,10 +28,10 @@ def group_required(group_name):
     return user_passes_test(lambda user: Group.objects.get(name=group_name) in user.groups.all())
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'equipment/home.html')
 
 def home_bsm(request):
-    return render(request, 'home_bsm.html')
+    return render(request, 'equipment/home_bsm.html')
 
 @login_required
 @group_required('BSM Equipment Search Users')
