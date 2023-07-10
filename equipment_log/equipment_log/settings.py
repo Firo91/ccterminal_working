@@ -65,6 +65,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://ccterminals.applikuapp.com/','http://ccterminals.applikuapp.com/'
 ]
 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 TEMPLATES = [
         {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
