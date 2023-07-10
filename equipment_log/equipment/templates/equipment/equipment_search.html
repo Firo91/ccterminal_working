@@ -22,7 +22,7 @@
             </div>            
           <div class="col-md-6 text-right">
             <div class="btn-group" role="group">
-        <form method="POST" action="{% url 'equipment/equipment_search' %}">          
+        <form method="POST" action="{% url 'equipment_search' %}">          
               {% csrf_token %}
               <button onclick="location.reload()" class="btn btn-primary mr-6 mb-3"><b>Refresh</b></button>                      
               <button type="submit" class="btn btn-success mr-6 mb-3"><b>Save</b></button>  
