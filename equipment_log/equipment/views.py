@@ -35,7 +35,7 @@ def home_bsm(request):
 
 @login_required
 @group_required('BSM Equipment Search Users')
-def bsm_equipment_search(request):
+def bsm_equipment_search(request):   
     # Get the equipment queryset
     equipments = Equipment.objects.all()
     
@@ -186,6 +186,29 @@ def upload_file(request):
         return render(request, 'equipment/equipment_search.html')
 
     return render(request, 'equipment/upload_file.html')
+
+def upload_user_file(request):
+    if request.method == 'POST':
+        file = request.FILES['file']
+        df = pd.read_excel(file)
+
+        for _, row in df.iterrows():
+            username = row['Username']
+            password = row['Password']
+            customuser, created = CustomUser.objects.get_or_create(username=username)
+            
+            customuser.name = row['Name']
+            customuser.country = row['Country']
+            customuser.city = row['Location']
+            
+            # Set the password for the user
+            customuser.set_password(password)
+            
+            customuser.save()
+
+        return render(request, 'equipment/equipment_search.html')
+
+    return render(request, 'equipment/upload_user_file.html')
 
 def download_equipment_excel(request):
     # Query the Equipment objects
@@ -378,6 +401,8 @@ def check_history(request):
     return render(request, 'equipment/check_history.html', {'check_histories': check_histories})
 
 def custom_login(request):
+    error_message = ''
+    
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -388,10 +413,14 @@ def custom_login(request):
         if user is not None:
             # User credentials are correct, log in the user
             login(request, user)
-            return redirect('equipment_search')  # Replace 'equipment_search' with the URL name of your desired page
-
-        else:
-            error_message = 'Invalid name or password. Please try again.'
+            
+            # Check if the user is a member of the 'BSM Equipment Search Users' group
+            if user.groups.filter(name='BSM Equipment Search Users').exists():
+                # The user is a member of the 'BSM Equipment Search Users' group
+                return redirect('bsm_equipment_search')
+            else:
+                # The user is not a member of the 'BSM Equipment Search Users' group
+                return redirect('equipment_search')
 
     else:
         error_message = ''
@@ -408,6 +437,7 @@ def custom_login_bsm(request):
 
         if user is not None:
             # User credentials are correct, log in the user
+            request.session['login_view'] = 'custom_login_bsm'
             login(request, user)
             return redirect('bsm_equipment_search')  # Replace 'equipment_search' with the URL name of your desired page
 

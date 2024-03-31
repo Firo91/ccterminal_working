@@ -1,6 +1,6 @@
 from django.urls import re_path
 from django.urls import path
-from .views import custom_login_bsm, home_bsm, download_equipment_excel_users, check_history, get_locations, download_equipment_excel_changes, reset_password, change_password, custom_logout, register, custom_login, upload_file, edit_equipment, equipment_search, home, download_equipment_excel, bsm_equipment_search, download_equipment_excel_history, equipment_changes_view
+from .views import custom_login_bsm, upload_user_file, home_bsm, download_equipment_excel_users, check_history, get_locations, download_equipment_excel_changes, reset_password, change_password, custom_logout, register, custom_login, upload_file, edit_equipment, equipment_search, home, download_equipment_excel, bsm_equipment_search, download_equipment_excel_history, equipment_changes_view
 
 urlpatterns = [
     path('', home, name='home'),
@@ -8,6 +8,7 @@ urlpatterns = [
     path('equipment_search/', equipment_search, name='equipment_search'),
     path('bsm_equipment_search/', bsm_equipment_search, name='bsm_equipment_search'),
     path('upload/', upload_file, name='upload_file'),
+    path('upload_user/', upload_user_file, name='upload_user_file'),
     path('download-equipment-excel/', download_equipment_excel, name='download_equipment_excel'),
     path('download-equipment-excel_history/', download_equipment_excel_history, name='download_equipment_excel_history'),
     path('download-equipment-excel_changes/', download_equipment_excel_changes, name='download_equipment_excel_changes'),
